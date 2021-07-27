@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns:fx="http://javafx.com/fxml" fx:controller="gui.javafx.controllers.EditController">
+  <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+         <items>
+            <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button fx:id="loadButton" mnemonicParsing="false" onAction="#handleLoadClick" text="Load" />
+                  <Button fx:id="saveButton" layoutX="125.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleSaveClick" text="Save" textAlignment="RIGHT" />
+              </buttons>
+            </ButtonBar>
+            <Pane HBox.hgrow="ALWAYS" />
+            <TextField />
+         </items>
+      </ToolBar>
+      <AnchorPane VBox.vgrow="ALWAYS">
+         <children>
+            <Pane prefWidth="187.5" style="-fx-background-color: #cccccc;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <GridPane fx:id="changes" layoutX="8.0" layoutY="240.0" prefHeight="30.0" prefWidth="171.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children></Pane>
+            <GridPane onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="240.0" prefWidth="180.0" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="45.0" onDragDetected="#handleDragDetected" stroke="#1b195b" strokeType="INSIDE" width="51.0" />
+                  <Circle fx:id="circle" fill="WHITE" onDragDetected="#handleDragDetected" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" radius="22.0" stroke="#1b195b" strokeType="INSIDE" GridPane.columnIndex="1" />
+                  <ImageView fx:id="image" fitHeight="43.0" fitWidth="51.0" onDragDetected="#handleDragDetected" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../../resources/img-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="text" fill="#1b195b" onDragDetected="#handleDragDetected" onMousePressed="#handleMouseEntered" onMouseReleased="#handleMouseExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="2" />
+                  <Line fx:id="line" endX="-135.61026000976562" endY="103.38975524902344" onDragDetected="#handleDragDetected" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" startX="-176.38844299316406" startY="78.611572265625" stroke="#1b195b" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Pane fx:id="content" onDragDetected="#handleDragDetected" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <TextArea editable="false" layoutX="6.0" layoutY="19.0" onMouseDragged="#handleDragDetected" onMouseExited="#handleMouseEntered" onMouseMoved="#handleMouseExited" prefHeight="43.0" prefWidth="67.0" style="-fx-background-color: #1b195b; -fx-border-color: #1b195b;" text="&#10; Text Aea&#10;">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <ScrollPane layoutX="200.5500030517578" layoutY="5.550000190734863" prefHeight="449.0" prefWidth="689.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="200.55" AnchorPane.rightAnchor="10.55" AnchorPane.topAnchor="5.0">
+               <content>
+                  <GridPane prefHeight="262.0" prefWidth="180.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content></ScrollPane>
+            <ImageView fitHeight="15.0" fitWidth="30.0" layoutX="215.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="253.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="674.4827585220337" AnchorPane.topAnchor="260.0">
+               <image>
+                  <Image url="@../../../../resources/back_not.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="30.0" layoutX="859.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="253.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="260.0">
+               <image>
+                  <Image url="@../../../../resources/forward_not.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="70.0" layoutX="510.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="15.0">
+               <image>
+                  <Image url="@../../../../resources/redo_not.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="70.0" layoutX="550.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="15.0">
+               <image>
+                  <Image url="@../../../../resources/undo_not.png" />
+               </image>
+            </ImageView>
+            <ButtonBar buttonMinWidth="60.0" layoutX="200.0" layoutY="488.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="220.0">
+              <buttons>
+                  <Button fx:id="interpolationsButton" disable="true" layoutX="430.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleInterpolationsClick" text="Interpolations">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="transitionsButton" disable="true" layoutX="430.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleTransitionsClick" text="Transitions">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="settingsButton" layoutX="144.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleSettingsClick" text="Settings">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+              </buttons>
+            </ButtonBar>
+            <HBox layoutX="200.0" layoutY="459.0" prefHeight="20.0" style="-fx-background-color: #ffffff; -fx-border-color: #cccccc;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="100.0">
+               <children>
+                  <Label style="-fx-background-color: #f5f5f5;" text="    States  " />
+                  <HBox fx:id="bar" />
+                  <ImageView fx:id="addButton" fitHeight="17.0" fitWidth="20.0" onMouseClicked="#handleAddClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../resources/add.png" />
+                     </image>
+                  </ImageView>
+               </children></HBox>
+            <ImageView fx:id="presentButton" fitHeight="52.0" fitWidth="78.0" layoutX="766.0" layoutY="503.0" onMouseClicked="#handlePresentClick" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="@../../../../resources/present-icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="previewButton" disable="true" layoutX="738.0" layoutY="498.0" mnemonicParsing="false" onAction="#handlePreviewClick" text="Preview" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="100.0" />
+            <Pane fx:id="pane" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0" />
+         </children>
+      </AnchorPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">
+      <children>
+        <Label fx:id="leftStatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
+          </textFill>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label fx:id="rightStatus" font="$x3" maxWidth="-1.0" text="Welcome!!!" textFill="$x4" HBox.hgrow="NEVER">
+               <padding>
+                  <Insets right="10.0" />
+               </padding></Label>
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>

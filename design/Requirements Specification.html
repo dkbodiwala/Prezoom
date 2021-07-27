@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Requirements Specification.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="prezoom-software-requirements-specification"><strong>Prezoom Software Requirements Specification</strong></h1>
+<h2 id="team-alfa-members">Team Alfa Members</h2>
+<pre><code>1. Disha Bodiwala
+2. Kwame Owusu-Boakye
+3. Jagbir Singh Aulakh
+4. Shiv Umeshbhai Tilva
+5. Vraj Sanjaykumar Patel
+</code></pre>
+<h2 id="domain-model">Domain model:</h2>
+<p><img src="images/domain_model.png" alt="image info"></p>
+<!-- ```mermaid
+classDiagram
+    Sheet "1" o-- "0..*" States
+    States "1" o-- "0..*" Objects
+    Objects "1" o-- "0..*" Attributes
+    Camera "1" o-- "0..*" Attributes
+    Transitions "1" -- "2" States
+    Transitions -- Timeline
+    Timeline --* Mode
+    Transitions *-- Camera
+    Interpolations -- Objects
+
+    Transitions : trigger()
+    Mode : edit()
+    Mode : presentation()
+``` -->
+<h2 id="lexicon">Lexicon</h2>
+<h3 id="1-state">[1]	State:</h3>
+<p>A state is a combination of 0 or more objects. Multiple states are present on a single sheet and change according to transitions.</p>
+<h3 id="2-objects">[2]	Objects:</h3>
+<p>Objects can have 1 or more attributes and can belong to multiple states using a link id.</p>
+<h3 id="4-attributes">[4]	Attributes:</h3>
+<p>It describes a set of possible features related to an objects or the camera.</p>
+<h3 id="5-transitions">[5]	Transitions:</h3>
+<p>Transitions provide a transformation from one state to another through a triggering mechanism. This causes the camera to move to the next state accordingly.</p>
+<h3 id="6-interpolation">[6]	Interpolation:</h3>
+<p>Interpolation provides information about transition of objects. The same interpolation method can be applied to multiple objects.</p>
+<h3 id="7-camera">[7]	Camera:</h3>
+<p>It has 1 or more attributes and focuses on current state.</p>
+<h3 id="8-timeline">[8]	Timeline:</h3>
+<p>A timeline describes the sequence (flow) of transitions which can be presented or edited according to modes.</p>
+<h3 id="9-mode">[9]	Mode:</h3>
+<p>Each sheet consists of two mode types (Edit and Presentation) where edit mode is the default one in which user can define and manipulate various states, transitions, objects, and interpolation. The presentation mode presents the timeline.</p>
+<h3 id="10-sheet">[10] Sheet:</h3>
+<p>User can create a new sheet or load an existing sheet. After editing a sheet, user can save it for later use. Each sheet can contain multiple states.</p>
+<h3 id="11-trigger">[11] Trigger:</h3>
+<p>This describes the occurrence of an event in relation to a transition.</p>
+<h2 id="user-stories">User Stories</h2>
+<pre><code>1. Sheets
+    1.1. As a user, I should be able to create a new SHEET.
+    1.2. As a user, I should be able to load a previously saved sheet.
+    1.3. As a user, I should be able to save a sheet.
+    1.4. As a user, I should be able to specify the start state.
+    1.5. As a user, I should be able to exit the sheet.
+
+2. States
+    2.1. As a user, I should be able to add a state to a sheet.
+    2.2. As a user, I should be able to delete a state.
+    2.3. As a user, I should be able to reorder states.
+    2.4. As a user, I should be able to view the presentation at any state.
+
+3. Objects
+    3.1. As a user, I should be able to add different type of objects.
+    3.2. As a user, I should be able to delete an object.
+    3.3. As a user, I should be able to edit an object (by changing value of attributes).
+
+4. Transition
+    4.1. As a user, I should be able to add a transition.
+    4.2. As a user, I should be able to delete a transition.
+    4.3. As a user, I should be able to edit a transition.
+
+5. Interpolation
+    5.1. As a user, I should be able to adjust an object’s mode of transition.
+
+6. Mode
+    6.1. As a user, I should be able to switch two modes (Edit or Presentation).
+</code></pre>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="use-case-1-overview">Use Case 1: Overview</h3>
+<p><strong>Subject</strong>: The Prezoom System<br>
+<strong>Actors involved</strong>: User, The operating System<br>
+<strong>Requirements addressed</strong>: 1.*, 2.*, 3.*, 4.*, 5.*<br>
+<strong>Precondition</strong>: The system is not started yet</p>
+<h4 id="typical-flow">Typical flow:</h4>
+<ol>
+<li>User request Operating System to start the Alfa Project</li>
+<li>Operating System prompts user to create new or sheet are use an existing sheeet</li>
+<li>if the user selects &quot;Create new&quot; <ol type="a">
+     <li> The system creates a new blank sheet. </li>
+     <li> User can add/edit/delete objects, states, transitions either by drag and drop or clicking a corresponding button. </li> 
+     <li> User can save sheet by clicking the save button. </li>  
+     <li> User can alternatively exit the system using the toolbar. </li>
+ </ol>
+</li>
+<li>Else if the user chooses &quot;Load an existing sheet&quot; <ol type="a">
+     <li> The operating System prompts the user to load an existing sheet. </li>
+     <li> The User selects a saved sheet which is loaded into the system. </li>
+     <li> User can add/edit/delete objects, states, transitions either by drag and drop or clicking a corresponding button. </li> 
+     <li> User can save sheet by clicking the save button. </li>  
+     <li> User can again exit the system using the toolbar. </li>
+ </ol>
+</li>
+</ol>
+<h4 id="alternative-flow">Alternative flow:</h4>
+<ul>
+<li>If the user selects cancel in the file picker (in step 4.a),
+the process starts again at step 2.</li>
+</ul>
+<p><strong>Postcondition</strong>: The system is in running state.</p>
+<h3 id="use-case-2-switching-between-modes">Use Case 2: Switching between modes</h3>
+<p><strong>Subject</strong>: The Prezoom System<br>
+<strong>Actors involved</strong>: User, The operating System<br>
+<strong>Requirements addressed</strong>: 6.*<br>
+<strong>Precondition</strong>: The system is in running state.</p>
+<h4 id="typical-flow">Typical flow:</h4>
+<ol>
+<li>When in edit mode, User can click &quot;Present&quot; to switch directly to presentation mode.</li>
+<li>When in presentation mode, user can press &quot;ESC&quot; to switch to edit mode.</li>
+</ol>
+<p><strong>Postcondition</strong>: The system is in running state.</p>
+<h3 id="use-case-3-exit">Use Case 3: Exit</h3>
+<p><strong>Subject</strong>: The Prezoom System<br>
+<strong>Actors involved</strong>: User, The operating System<br>
+<strong>Requirements addressed</strong>: 1.5<br>
+<strong>Precondition</strong>: The system is in running state.</p>
+<h4 id="typical-flow">Typical flow:</h4>
+<ol>
+<li>The user selects the exit from toolbar, or by using the OS to send a “close” message to the main window.</li>
+<li>Include “ensure the data is safe”</li>
+<li>The system requests the Operating System to terminate its process.</li>
+</ol>
+<p><strong>Postcondition</strong>: The system is terminated<br>
+<strong>Alternative paths</strong>: If the user selects cancel in step 2 the use case stops with postcondition “The system is started”.</p>
+<h2 id="use-case-diagrams">Use Case Diagrams</h2>
+<h3 id="case-1--overview">Case 1 : Overview</h3>
+<p><img src="images/use_case_1.png" alt="image info"></p>
+<h3 id="case-2-switching-between-modes">Case 2: Switching between modes</h3>
+<p><img src="images/use_case_2.png" alt="image info"></p>
+<h2 id="state-diagram">State Diagram</h2>
+<h3 id="preconditions-and-postconditions-as-states">Preconditions and postconditions as states</h3>
+<p><img src="images/state_diagram.png" alt="image info"></p>
+<h2 id="wireframe">Wireframe</h2>
+<h3 id="edit-mode-all-states">Edit Mode [All States]</h3>
+<p><img src="images/edit_mode.png" alt="image info"></p>
+<h3 id="edit-mode-single-state">Edit Mode [Single State]</h3>
+<p><img src="images/state_mode.png" alt="image info"></p>
+<h3 id="presentation-mode">Presentation Mode</h3>
+<p><img src="images/presentation_mode.png" alt="image info"></p>
+<h3 id="widgets">Widgets</h3>
+<p><img src="images/widgets.png" alt="image info"></p>
+<h2 id="deliverables">Deliverables</h2>
+<h3 id="iteration-0">Iteration 0:</h3>
+<ul>
+<li>Domain Model.</li>
+<li>Lexicon.</li>
+<li>User Stories.</li>
+<li>Use Case.</li>
+<li>Use Case diagram and State diagram.</li>
+<li>Wireframe.</li>
+</ul>
+<h3 id="iteration-1">Iteration 1:</h3>
+<ul>
+<li>Template UI</li>
+<li>Transitions between states</li>
+<li>Adding object in the state</li>
+<li>Defining various attributes for each object.</li>
+<li>Changing attribute values.</li>
+</ul>
+<h3 id="iteration-2">Iteration 2:</h3>
+<ul>
+<li>Presentation mode.</li>
+<li>Save/Load file.</li>
+<li>Camera.</li>
+<li>Switching the modes between edit and presentation mode.</li>
+<li>Interpolation.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<h1 id="prezoom-project">Prezoom Project</h1>
+<h2 id="tools-and-technologies-used">Tools and technologies used</h2>
+<h3 id="maven">Maven</h3>
+<p>Maven is a build automation tools which is mainly used for Java bases project. Maven can help to build the whole application with just one command instead of manually writing long scripts for building the projects. It is also used for dependency management. Dependencies are nothing but third party libraries which are used in the application. If Maven is not used and any library or JAR is updated, then we have to manually update its JAR file in the project. However, with the help of Maven, it is very easy to update the dependencies i.e. we can just update the version number of the dependency in pom.xml. It dynamically downloads the libraries and plugins from the Maven Central Repository. Maven can also be used with other programming languages such as C#, Scala, and Ruby.</p>
+<p>Project Object Model (pom.xml) file is the heart of any maven project. It contains dependencies, plugins, goals to be executed, source directory for code, etc., which is used by Maven to build the application. When we want to build the project using Maven, we supply Maven with the pom.xml file, which needs to be used to execute all the commands.</p>
+<p>Maven is useful in the following scenarios:</p>
+<ol>
+<li>If there are too many dependencies to be handled in the project.</li>
+<li>When the libraries/JARs being used are updated frequently.</li>
+<li>Continuous integration, continuous deployment and testing is handled by Maven.</li>
+<li>Building the application package (JAR, WAR, ZIP etc.) and generating the documentation from source code is very easy using Maven.</li>
+</ol>
+<p><br/></p>
+<h3 id="junit">JUnit</h3>
+<p>JUnit is an testing framework for Java applications. We need to create unit test case files in order to do unit testing. Unit test case code can help us ensure that the application logic is working as per our expectations.
+Testing can of two types as following:</p>
+<ol>
+<li><strong>Manual Testing</strong>: It means doing the tests on application manually, without use of any testing script code. It is less reliable, prone to human errors, and time consuming process.</li>
+<li><strong>Automation Testing</strong>: It means writing the automated test scripts to test the application logic. It is more reliable and faster as compared manual testing.</li>
+</ol>
+<p>JUnit is very much useful due to following reasons:</p>
+<ol>
+<li>It helps us to identify bugs in our business logic code, which makes our application reliable.</li>
+<li>Using JUnit will help us save time by not doing the testing manually.</li>
+<li>JUnit is helpful in test-driven environment.</li>
+<li>It helps to develop reliable, readable, and bug-free code, which boosts the confidence of developers using the software development.</li>
+</ol>
+<p>Following are the some the annotations in Junit testing:</p>
+<ol>
+<li><strong>@Test</strong>: It indicates the method is test method.</li>
+<li><strong>@Test(timeout=1000)</strong>: It indicates that the test should fail if it is taking more than 1 second (1000 milliseconds) to run.</li>
+<li><strong>@BeforeClass</strong>: It indicates that the method will be called before starting any test case.</li>
+<li><strong>@Before</strong>: It indicates that the method will be called before each test.</li>
+<li><strong>@After</strong>: It indicates that the method will be called after each test.</li>
+<li><strong>@AfterClass</strong>: It indicates that the method will be called after completing any test case.</li>
+</ol>
+<p><br/></p>
+<h3 id="javafx">JavaFX</h3>
+<p>JavaFX is a software platform that provides plenty of media and graphics packages for creating Java desktop application. It can also be used to create rich web applications that can run on wide variety of devices. It helps developers to design, create, deploy, debug, and test client applications that run on variety of of platforms.</p>
+<p>Following are some of the features of JavaFX:</p>
+<ol>
+<li><p><strong>FXML</strong>: — It is a XML-based UI markup language created by Oracle for defining and creating UI in Java based applications.</p>
+</li>
+<li><p><strong>Scene Builder</strong>: It is visual layout toll, which helps the users quickly create UI in JavaFX applications. Users can drag and drop UI components.</p>
+</li>
+<li><p><strong>Swing Compatibility</strong>: In JavaFX, Swing content can be embedded using Swing Node class. Also, existing Swing applications can be updated with JavaFX features such as rich graphics and embedded web content.</p>
+</li>
+<li><p><strong>CSS Styling</strong>: We can also use CSS classes to provide styling in our UI.</p>
+</li>
+<li><p><strong>Rich sets of API’s</strong>: JavaFX provide plethora of APIs to develop GUI applications.</p>
+</li>
+</ol>
+<p><br/></p>
+<h3 id="test-driven-development">Test Driven Development</h3>
+<p>We have used Test Driven Development (TDD) software practice in our project. It is a &quot;Test-first&quot; approach, which means that it requires unit testing code to be written before implementing the actual business logic code. Therefore, at the beginning all the test cases will be failing, and after writing the code logic, the test cases should pass without changing anything. On the surface, it might seem that writing all the test case is a lot of extra code, and it takes extra time. However, after one has successfully understood, it helps the developer to code faster with unit testing by following TDD rather than without TDD.</p>
+<p>Following are some of the advantages of TDD.</p>
+<ol>
+<li>We receive faster feedback on code logic.</li>
+<li>Developer has to spend less time on debugging.</li>
+<li>It reduces the time required to do the rework.</li>
+<li>It helps to identify whether the last refactoring change broke the code.</li>
+<li>Error and problems in the code are identifies quickly.</li>
+<li>It helps to create code which is felexible and easily maintainable.</li>
+<li>It forces us to write small classes, which has only one focus. Therefore, TDD helps to create SOLID code.</li>
+</ol>
+<h2 id="maven-setup-on-various-os">Maven Setup on various OS</h2>
+<h3 id="windows">Windows</h3>
+<ol>
+<li><p>Ensure that <code>JAVA_HOME</code> in Environment variable is set to JDK installed on the system.
+For example, <code>JAVA_HOME</code> can be <code>C:\Program Files\Java\jdk-13.0.2</code></p>
+</li>
+<li><p>Download Maven from following <a href="http://maven.apache.org/download.cgi">this URL</a>, and extract it.</p>
+</li>
+<li><p>Add Maven&#39;s path to <code>PATH</code> variable in Environment Variables. For example, it can be <code>C:\Program Files\apache-maven-3.6.3\bin</code></p>
+</li>
+<li><p>Open new command window and run <code>mvn --version</code> to make sure that the installation was successful.</p>
+</li>
+</ol>
+<p><br/></p>
+<h3 id="linux">Linux</h3>
+<ol>
+<li><p>Download Maven using following command:
+<code>wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /tmp</code></p>
+</li>
+<li><p>Unzip(untar) the downloaded file using following command:
+<code>tar xf /tmp/apache-maven-*.tar.gz -C /opt</code></p>
+</li>
+<li><p>Install the alternative version for the mvn in your system
+<code>sudo update-alternatives --install /usr/bin/mvn mvn /opt/apache-maven-3.6.3/bin/mvn 363</code></p>
+</li>
+<li><p>Check if your configuration is ok. You may use your current or the 3.6.3 whenever you wish, running the command below.
+<code>sudo update-alternatives --config mvn</code></p>
+</li>
+<li><p>Make sure that the installation was successful by using following command.
+<code>mvn --version</code></p>
+</li>
+</ol>
+<p><br/></p>
+<h3 id="macos">MacOS</h3>
+<ol>
+<li><p>Download  latest Maven  binary archive from <a href="http://maven.apache.org/download.cgi">here</a>.</p>
+</li>
+<li><p>Extract the contents of the archive:</p>
+</li>
+<li><p>Move the extracted maven folder to any other location, eg Applications using below command:</p>
+</li>
+</ol>
+<p><code>mv Downloads/apache-maven* /Applications/apache-maven-3.6.3</code></p>
+<ol>
+<li>Now open terminal and setup maven class path in environment variable by updating  <code>.bash_profile</code>  file by running following commands:</li>
+</ol>
+<p><code>open ~/.bash_profile</code></p>
+<ol>
+<li>Now edit the file by adding the following lines:</li>
+</ol>
+<p><code>export M2_HOME=/Applications/apache-maven-3.6.3</code> 
+<code>export PATH=$PATH:$M2_HOME/bin</code></p>
+<ol>
+<li><p>reload  <code>.bash_profile</code> by using following command:
+<code>source ~/.bash_profile</code></p>
+</li>
+<li><p>Make sure that the installation was successful by using following command.
+<code>mvn --version</code></p>
+</li>
+</ol>
+<h2 id="how-to-setup-and-run-application">How to setup and run application</h2>
+<h3 id="maven-lifecycle">Maven Lifecycle</h3>
+<p>As we are using Maven for dependency management, there is no need to download the dependencies separately. Maven will take care of it. We can run following maven commands to build the project  and run the application.</p>
+<ol>
+<li><p>Use the below command to remove the files generated at build-time in project&#39;s directory.
+<code>mvn clean</code></p>
+</li>
+<li><p>Install all the dependencies required by the project using following command:
+<code>mvn install</code></p>
+</li>
+<li><p>Run the test cases by running following command:
+<code>mvn test</code></p>
+</li>
+<li><p>Build the application project using following command:
+<code>mvn package</code></p>
+</li>
+<li><p>Finally, execute the application by running following command:
+<code>mvn exec:java</code></p>
+</li>
+</ol>

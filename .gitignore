@@ -1,0 +1,11 @@
+.vscode
+*.lck
+*.bak*
+.project
+.classpath
+target
+config.properties
+.settings
+/bin/
+.idea/
+*.iml
